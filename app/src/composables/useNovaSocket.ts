@@ -7,12 +7,13 @@ const sessionId = ref<string | null>(null);
 
 export function useNovaSocket() {
   const getBackendUrl = () => {
-    // En desarrollo, detectar si estamos en mobile
+    // Local development
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       return 'http://localhost:3001';
     }
-    // Si estamos accediendo desde otra IP (mobile), usar la misma IP
-    return `http://${window.location.hostname}:3001`;
+    
+    // Production
+    return 'https://api.nova.awslearn.cloud';
   };
 
   const connect = (url?: string) => {

@@ -158,8 +158,13 @@ onMounted(async () => {
       awsCredentials.sessionToken = sessionToken;
     }
 
+    // Get backend URL
+    const backendUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:3001'
+      : 'https://api.nova.awslearn.cloud';
+
     // Call backend to analyze with Nova 2 Lite
-    const response = await fetch('http://localhost:3001/api/analyze', {
+    const response = await fetch(`${backendUrl}/api/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ transcript, config, awsCredentials })

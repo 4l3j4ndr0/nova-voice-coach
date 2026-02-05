@@ -160,17 +160,15 @@
                     "
                     @click="config.tone = tone.value"
                     v-ripple
-                    :style="
-                      $q.screen.lt.md ? 'padding: 8px;' : 'padding: 16px;'
-                    "
+                    style="padding: 12px 4px;"
                   >
                     <q-icon
                       :name="tone.icon"
-                      :size="$q.screen.lt.md ? 'sm' : 'md'"
+                      :size="$q.screen.lt.sm ? '24px' : 'md'"
                     />
                     <div
-                      class="text-caption text-weight-bold text-uppercase"
-                      :style="$q.screen.lt.md ? 'font-size: 0.65rem;' : ''"
+                      class="text-weight-bold text-uppercase q-mt-xs"
+                      :style="$q.screen.lt.sm ? 'font-size: 0.6rem; line-height: 1.2;' : 'font-size: 0.75rem;'"
                     >
                       {{ tone.label }}
                     </div>

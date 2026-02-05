@@ -306,11 +306,16 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .sonic-orb-container {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  @media (max-width: 600px) {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .mic-rings {
@@ -325,8 +330,8 @@ onUnmounted(() => {
 
 .mic-ring {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 80%;
+  height: 80%;
   border: 3px solid rgba(76, 175, 80, 0.3);
   border-radius: 50%;
   opacity: 0;
@@ -357,8 +362,8 @@ onUnmounted(() => {
 }
 
 .sonic-orb {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
@@ -367,6 +372,11 @@ onUnmounted(() => {
   position: relative;
   z-index: 10;
   transition: all 0.3s ease;
+  
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .orb-idle {
@@ -429,6 +439,6 @@ onUnmounted(() => {
 }
 
 .scale-mobile {
-  transform: scale(0.7);
+  transform: scale(0.85);
 }
 </style>

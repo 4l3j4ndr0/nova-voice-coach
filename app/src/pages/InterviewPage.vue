@@ -1,15 +1,12 @@
 <template>
-  <q-page class="flex flex-center">
-    <div
-      class="column items-center justify-between full-width"
-      style="max-height: 90vh; padding: 20px"
-    >
+  <q-page class="flex flex-center q-pa-md">
+    <div class="column items-center justify-between full-width" style="max-width: 800px; max-height: 90vh">
       <!-- Top Info -->
-      <div class="text-center q-mb-md">
-        <div class="text-h5 text-weight-bold">
+      <div class="text-center q-mb-md full-width">
+        <div class="text-h5 text-weight-bold" :class="{'text-h6': $q.screen.lt.sm}">
           {{ config.role || "Technical Interview" }}
         </div>
-        <div class="text-subtitle2 text-grey-5">
+        <div class="text-subtitle2 text-grey-5" :class="{'text-caption': $q.screen.lt.sm}">
           {{ config.techStack?.join(", ") || "General Tech" }}
         </div>
         <q-badge color="red" class="q-mt-sm" v-if="isRecording">
@@ -19,7 +16,7 @@
       </div>
 
       <!-- The AI Visualizer (Nova Sonic) -->
-      <div class="sonic-orb-container q-my-lg">
+      <div class="sonic-orb-container q-my-md" :class="{'scale-mobile': $q.screen.lt.sm}">
         <!-- User Mic Rings (Ripple when user speaks) -->
         <div
           class="mic-rings"
@@ -41,18 +38,15 @@
           <q-icon
             name="graphic_eq"
             color="white"
-            size="80px"
+            :size="$q.screen.lt.sm ? '50px' : '80px'"
             style="opacity: 0.9"
           />
         </div>
       </div>
 
       <!-- Status Text with Transcript -->
-      <div
-        class="status-container q-my-md text-center"
-        style="min-height: 120px; max-width: 600px"
-      >
-        <div class="text-h6 q-mb-sm">
+      <div class="status-container q-my-md text-center full-width" style="max-width: 600px">
+        <div class="text-h6 q-mb-sm" :class="{'text-body1': $q.screen.lt.sm}">
           <span v-if="isAiSpeaking" class="text-purple-300 animated-text">
             <q-icon name="record_voice_over" size="sm" class="q-mr-xs" />
             AI is speaking...
@@ -77,7 +71,8 @@
         <!-- Last Transcript -->
         <div
           v-if="lastTranscript"
-          class="glass-card q-pa-md rounded-borders text-body2 text-grey-3"
+          class="glass-card q-pa-md rounded-borders text-grey-3"
+          :class="$q.screen.lt.sm ? 'text-caption' : 'text-body2'"
         >
           <div class="text-weight-bold text-purple-300 q-mb-xs">
             {{ lastTranscript.role === "USER" ? "You" : "AI" }}:
@@ -87,30 +82,29 @@
       </div>
 
       <!-- Controls -->
-      <div
-        class="row q-gutter-lg items-center q-mt-auto glass-card q-pa-lg rounded-borders"
-      >
-        <q-btn
-          round
-          size="xl"
-          :color="isMuted ? 'red-7' : 'grey-8'"
-          :icon="isMuted ? 'mic_off' : 'mic'"
-          @click="toggleMute"
-          class="shadow-5"
-        >
-          <q-tooltip>{{ isMuted ? "Unmute" : "Mute" }} Microphone</q-tooltip>
-        </q-btn>
+      <div class="q-mt-md full-width" style="max-width: 400px">
+        <div class="row justify-center q-gutter-md">
+          <q-btn
+            round
+            :size="$q.screen.lt.sm ? 'lg' : 'xl'"
+            :color="isMuted ? 'red-7' : 'grey-8'"
+            :icon="isMuted ? 'mic_off' : 'mic'"
+            @click="toggleMute"
+            class="shadow-5"
+          >
+            <q-tooltip>{{ isMuted ? "Unmute" : "Mute" }}</q-tooltip>
+          </q-btn>
 
-        <q-btn
-          color="red-6"
-          label="End Interview"
-          icon="stop"
-          rounded
-          size="lg"
-          padding="12px 40px"
-          @click="endInterview"
-          class="shadow-5"
-        />
+          <q-btn
+            color="red-6"
+            label="End"
+            icon="stop"
+            rounded
+            :size="$q.screen.lt.sm ? 'md' : 'lg'"
+            @click="endInterview"
+            class="shadow-5"
+          />
+        </div>
       </div>
     </div>
   </q-page>
@@ -418,5 +412,9 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scale-mobile {
+  transform: scale(0.7);
 }
 </style>

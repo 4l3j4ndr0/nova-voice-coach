@@ -156,22 +156,27 @@ Nova Voice Coach democratizes access to high-quality technical interview practic
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/4l3j4ndr0/nova-voice-coach.git
    cd nova-voice-coach
    ```
 
-2. **Install frontend dependencies:**
+2. **Install all dependencies:**
    ```bash
+   npm run install:all
+   ```
+
+   Or install separately:
+   ```bash
+   # Frontend
+   cd app
+   npm install
+   
+   # Backend
+   cd ../backend
    npm install
    ```
 
-3. **Install backend dependencies:**
-   ```bash
-   cd backend
-   npm install
-   ```
-
-4. **Configure environment variables:**
+3. **Configure environment variables (Backend):**
    ```bash
    cd backend
    cp .env.example .env
@@ -180,23 +185,34 @@ Nova Voice Coach democratizes access to high-quality technical interview practic
 
 ### Running the Application
 
-1. **Start the backend server:**
-   ```bash
-   cd backend
-   npm start
-   # Server runs on http://localhost:3001
-   ```
+**Option 1: Using root scripts (Recommended)**
+```bash
+# Terminal 1 - Backend
+npm run backend
 
-2. **Start the frontend (in a new terminal):**
-   ```bash
-   npm run dev
-   # Frontend runs on http://localhost:9000
-   ```
+# Terminal 2 - Frontend
+npm run dev
+```
 
-3. **Access the application:**
-   - Open your browser to `http://localhost:9000`
-   - Allow microphone permissions when prompted
-   - Configure your interview and start practicing!
+**Option 2: Manual**
+```bash
+# Terminal 1 - Backend
+cd backend
+npm start
+# Server runs on http://localhost:3001
+
+# Terminal 2 - Frontend
+cd app
+npm run dev
+# Frontend runs on http://localhost:9000
+```
+
+### Access the Application
+
+- Open your browser to `http://localhost:9000`
+- Allow microphone permissions when prompted
+- Configure your AWS credentials in the app (click "Configure Credentials" button)
+- Start practicing!
 
 ---
 
@@ -287,26 +303,31 @@ Nova Voice Coach democratizes access to high-quality technical interview practic
 
 ```
 nova-voice-coach/
-├── src/                          # Frontend source
-│   ├── pages/
-│   │   ├── IndexPage.vue         # Configuration lobby
-│   │   ├── InterviewPage.vue     # Voice interview room
-│   │   └── FeedbackPage.vue      # Analysis results
-│   ├── composables/
-│   │   ├── useSession.ts         # Session state management
-│   │   ├── useNovaSocket.ts      # Socket.IO client
-│   │   └── useAudioRecorder.ts   # Microphone capture
-│   ├── layouts/
-│   │   └── MainLayout.vue        # App layout with header
-│   └── assets/
-│       └── nova-logo.svg         # Animated logo
+├── app/                          # Frontend (Vue 3 + Quasar)
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── IndexPage.vue         # Configuration lobby
+│   │   │   ├── InterviewPage.vue     # Voice interview room
+│   │   │   └── FeedbackPage.vue      # Analysis results
+│   │   ├── composables/
+│   │   │   ├── useSession.ts         # Session state management
+│   │   │   ├── useNovaSocket.ts      # Socket.IO client
+│   │   │   └── useAudioRecorder.ts   # Microphone capture
+│   │   ├── layouts/
+│   │   │   └── MainLayout.vue        # App layout with credentials config
+│   │   └── assets/
+│   │       └── nova-logo.svg         # Animated logo
+│   ├── public/                       # Static assets
+│   ├── quasar.config.ts             # Quasar configuration
+│   └── package.json                 # Frontend dependencies
 ├── backend/
 │   ├── server.js                 # Express + Socket.IO server
-│   └── services/
-│       └── NovaSessionManager.js # Bedrock integration
-├── public/                       # Static assets
-├── quasar.config.ts             # Quasar configuration
-└── package.json                 # Dependencies
+│   ├── services/
+│   │   └── NovaSessionManager.js # Bedrock integration
+│   └── package.json              # Backend dependencies
+├── .kiro/                        # Kiro configuration
+├── README.md                     # Documentation
+└── package.json                  # Root scripts
 ```
 
 ### Key Technologies

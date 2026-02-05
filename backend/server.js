@@ -8,10 +8,19 @@ const NovaSessionManager = require('./services/NovaSessionManager');
 
 const app = express();
 const server = createServer(app);
+
+// CORS configuration from environment variable
+const allowedOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+  : '*';
+
+console.log('CORS allowed origins:', allowedOrigins);
+
 const io = new Server(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
   },
   transports: ['websocket', 'polling'],
   allowEIO3: true,
@@ -21,7 +30,8 @@ const io = new Server(server, {
 
 // Middleware
 app.use(cors({
-  origin: '*'
+  origin: allowedOrigins,
+  credentials: true
 }));
 app.use(express.json());
 

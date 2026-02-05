@@ -1,15 +1,17 @@
 version: 1
-frontend:
-  phases:
-    build:
-      commands:
-        - npm i
-        - npm run build
-  artifacts:
-    baseDirectory: dist/spa
-    files:
-      - "**/*"
-  cache:
-    paths:
-      - .npm/**/*
-      - node_modules/**/*
+applications:
+  - appRoot: app
+    frontend:
+      phases:
+        build:
+          commands:
+            - npm i
+            - npm run build
+      artifacts:
+        baseDirectory: dist/spa
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - .npm/**/*
+          - node_modules/**/*

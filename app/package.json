@@ -1,0 +1,35 @@
+{
+  "name": "nova-voice-coach",
+  "version": "0.0.1",
+  "description": "nova voice coach",
+  "productName": "nova voice coach",
+  "author": "4l3j4ndr0 <alejandro.casta3447@gmail.com>",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "postinstall": "quasar prepare"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.4",
+    "axios": "^1.2.1",
+    "pinia": "^3.0.1",
+    "quasar": "^2.16.0",
+    "socket.io-client": "^4.8.3",
+    "vue": "^3.5.22",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^2.1.0",
+    "@types/node": "^20.5.9",
+    "autoprefixer": "^10.4.2",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": "^28 || ^26 || ^24 || ^22 || ^20",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

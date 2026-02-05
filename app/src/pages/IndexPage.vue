@@ -307,7 +307,7 @@ const voiceOptions = [
 ];
 
 const startInterview = async () => {
-  if (!userName.value) {
+  if (!userName.value || userName.value.trim() === '') {
     $q.notify({
       type: "warning",
       message: "Please enter your name",

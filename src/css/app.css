@@ -1,1 +1,103 @@
-/* app global css */
+/* Nova Voice Coach - Global Styles */
+
+body {
+  background-color: #0f172a;
+  color: white;
+}
+
+/* Nova Gradient Text */
+.text-gradient {
+  background: linear-gradient(to right, #4ade80, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Personality Card Styles */
+.personality-card {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.personality-card.selected {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15) !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.personality-icon {
+  font-size: 2.5em;
+  margin-bottom: 8px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.selected .personality-icon {
+  opacity: 1;
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
+}
+
+/* Sonic Orb */
+.sonic-orb-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sonic-orb {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  z-index: 2;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-speaking {
+  animation: pulse-speaking 1.5s infinite;
+}
+
+@keyframes pulse-speaking {
+  0% { transform: scale(1); box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+  50% { transform: scale(1.2); box-shadow: 0 0 60px rgba(168, 85, 247, 0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+}
+
+/* Mic Visualizer Rings */
+.mic-ring {
+  position: absolute;
+  border: 2px solid #4ade80;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.mic-active .mic-ring {
+  animation: ripple 2s linear infinite;
+}
+
+@keyframes ripple {
+  0% { width: 120px; height: 120px; opacity: 0.8; }
+  100% { width: 300px; height: 300px; opacity: 0; }
+}
+
+/* Header API Input */
+.header-api-input .q-field__control {
+  background: rgba(255,255,255,0.1) !important;
+  border-radius: 8px;
+}

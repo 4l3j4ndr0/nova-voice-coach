@@ -1,0 +1,90 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="novaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer Circle (Sonic Wave) - Animated -->
+  <circle cx="100" cy="100" r="85" stroke="url(#novaGradient)" stroke-width="2" fill="none" opacity="0.3">
+    <animate attributeName="r" values="85;90;85" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="100" cy="100" r="70" stroke="url(#novaGradient)" stroke-width="2" fill="none" opacity="0.5">
+    <animate attributeName="r" values="70;75;70" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Main Orb - Pulsing -->
+  <circle cx="100" cy="100" r="55" fill="url(#novaGradient)" filter="url(#glow)">
+    <animate attributeName="r" values="55;58;55" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Microphone Icon (Stylized) -->
+  <g transform="translate(100, 100)">
+    <!-- Mic Body -->
+    <rect x="-8" y="-25" width="16" height="30" rx="8" fill="white" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="1.5s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Mic Stand -->
+    <path d="M 0 10 L 0 20" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+    <path d="M -12 20 L 12 20" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+    
+    <!-- Sound Waves (Left) - Animated -->
+    <path d="M -25 -10 Q -30 0 -25 10" stroke="url(#greenGradient)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; -3,0; 0,0" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M -35 -15 Q -42 0 -35 15" stroke="url(#greenGradient)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.2s" begin="0.2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; -5,0; 0,0" dur="1.2s" begin="0.2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Sound Waves (Right) - Animated -->
+    <path d="M 25 -10 Q 30 0 25 10" stroke="url(#greenGradient)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 3,0; 0,0" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 35 -15 Q 42 0 35 15" stroke="url(#greenGradient)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.2s" begin="0.2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 5,0; 0,0" dur="1.2s" begin="0.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Accent Dots (AI/Tech feel) - Floating -->
+  <circle cx="40" cy="60" r="3" fill="#4ade80" opacity="0.6">
+    <animate attributeName="cy" values="60;55;60" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="160" cy="140" r="3" fill="#3b82f6" opacity="0.6">
+    <animate attributeName="cy" values="140;145;140" dur="2.3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="50" cy="140" r="2" fill="#a855f7" opacity="0.5">
+    <animate attributeName="cy" values="140;135;140" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="60" r="2" fill="#4ade80" opacity="0.5">
+    <animate attributeName="cy" values="60;65;60" dur="2.7s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.7s" repeatCount="indefinite"/>
+  </circle>
+</svg>

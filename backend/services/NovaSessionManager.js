@@ -352,7 +352,17 @@ class NovaSessionManager extends EventEmitter {
       console.log(`[${sessionId}] Response stream ended`);
     } catch (error) {
       console.error(`[${sessionId}] Error processing responses:`, error);
-      this.emit(`${sessionId}:error`, error);
+      
+      // Handle specific timeout errors
+      if (error.message && error.message.includes('timed out')) {
+        console.log(`[${sessionId}] Model timeout - this is normal for long responses`);
+        this.emit(`${sessionId}:textOutput`, {
+          role: 'ASSISTANT',
+          content: 'I apologize, my response took too long. Could you please repeat your question?'
+        });
+      } else {
+        this.emit(`${sessionId}:error`, error);
+      }
     }
   }
 

@@ -1,8 +1,8 @@
 <template>
-  <q-page class="flex flex-center q-pa-md">
-    <div class="column items-center justify-between full-width" style="max-width: 800px; max-height: 90vh">
+  <q-page class="flex flex-center" :class="$q.screen.lt.sm ? 'q-pa-sm' : 'q-pa-md'" style="overflow-x: hidden">
+    <div class="column items-center justify-between" style="width: 100%; max-width: 800px; min-height: 80vh; max-height: 90vh; overflow-x: hidden; padding: 0 8px">
       <!-- Top Info -->
-      <div class="text-center q-mb-md full-width">
+      <div class="text-center q-mb-md full-width" style="flex-shrink: 0">
         <div class="text-h5 text-weight-bold" :class="{'text-h6': $q.screen.lt.sm}">
           {{ config.role || "Technical Interview" }}
         </div>
@@ -16,7 +16,7 @@
       </div>
 
       <!-- The AI Visualizer (Nova Sonic) -->
-      <div class="sonic-orb-container q-my-md" :class="{'scale-mobile': $q.screen.lt.sm}">
+      <div class="sonic-orb-container q-my-md" :class="{'scale-mobile': $q.screen.lt.sm}" style="flex-shrink: 0">
         <!-- User Mic Rings (Ripple when user speaks) -->
         <div
           class="mic-rings"
@@ -45,7 +45,7 @@
       </div>
 
       <!-- Status Text with Transcript -->
-      <div class="status-container q-my-md text-center full-width" style="max-width: 600px">
+      <div class="status-container q-my-md text-center full-width" style="max-width: 600px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center">
         <div class="text-h6 q-mb-sm" :class="{'text-body1': $q.screen.lt.sm}">
           <span v-if="isAiSpeaking" class="text-purple-300 animated-text">
             <q-icon name="record_voice_over" size="sm" class="q-mr-xs" />
@@ -71,8 +71,21 @@
         <!-- Last Transcript -->
         <div
           v-if="lastTranscript"
-          class="glass-card q-pa-md rounded-borders text-grey-3"
+          class="q-pa-md text-grey-3"
           :class="$q.screen.lt.sm ? 'text-caption' : 'text-body2'"
+          style="
+            width: 100%;
+            max-width: 100%;
+            min-height: 60px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+          "
         >
           <div class="text-weight-bold text-purple-300 q-mb-xs">
             {{ lastTranscript.role === "USER" ? "You" : "AI" }}:
@@ -82,11 +95,11 @@
       </div>
 
       <!-- Controls -->
-      <div class="q-mt-md full-width" style="max-width: 400px">
-        <div class="row justify-center q-gutter-md">
+      <div class="q-mt-md full-width" style="flex-shrink: 0">
+        <div class="flex flex-center" :class="$q.screen.lt.sm ? 'q-gutter-sm' : 'q-gutter-md'">
           <q-btn
             round
-            :size="$q.screen.lt.sm ? 'lg' : 'xl'"
+            :size="$q.screen.lt.md ? 'lg' : 'xl'"
             :color="isMuted ? 'red-7' : 'grey-8'"
             :icon="isMuted ? 'mic_off' : 'mic'"
             @click="toggleMute"
@@ -97,10 +110,10 @@
 
           <q-btn
             color="red-6"
-            label="End"
+            :label="$q.screen.lt.md ? 'End' : 'End Interview'"
             icon="stop"
             rounded
-            :size="$q.screen.lt.sm ? 'md' : 'lg'"
+            :size="$q.screen.lt.md ? 'md' : 'lg'"
             @click="endInterview"
             class="shadow-5"
           />
@@ -409,9 +422,10 @@ onUnmounted(() => {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
 }
 
 .scale-mobile {

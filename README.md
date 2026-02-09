@@ -72,56 +72,7 @@ Nova Voice Coach democratizes access to high-quality technical interview practic
 
 ### System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                         Frontend (Vue 3)                     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │ IndexPage    │  │ InterviewPage│  │ FeedbackPage │      │
-│  │ (Config)     │→ │ (Voice Chat) │→ │ (Analysis)   │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│         │                  │                  │              │
-│         │                  ↓                  ↓              │
-│         │          ┌──────────────┐   ┌──────────────┐      │
-│         │          │ useNovaSocket│   │ localStorage │      │
-│         │          │ (Socket.IO)  │   │ (Transcript) │      │
-│         │          └──────────────┘   └──────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-                            │                  │
-                            ↓                  ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    Backend (Node.js + Express)               │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │              Socket.IO Server                        │   │
-│  │  • Session Management                                │   │
-│  │  • Audio Streaming (PCM Int16, 16kHz)               │   │
-│  │  • Event Handling (audioInput, contentEnd)          │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                            │                                 │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │         NovaSessionManager                           │   │
-│  │  • Bidirectional Streaming                          │   │
-│  │  • Silence Detection (2s timeout)                   │   │
-│  │  • Voice ID Mapping (10 languages x 2 genders)      │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                            │                                 │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │         REST API (/api/analyze)                      │   │
-│  │  • Transcript Analysis with Nova 2 Lite             │   │
-│  │  • JSON Response (score, strengths, weaknesses)     │   │
-│  └──────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    Amazon Bedrock                            │
-│  ┌──────────────────────┐  ┌──────────────────────┐         │
-│  │  Nova 2 Sonic        │  │  Nova 2 Lite         │         │
-│  │  • Speech-to-Speech  │  │  • Text Analysis     │         │
-│  │  • 10 Languages      │  │  • JSON Output       │         │
-│  │  • 20 Voice IDs      │  │  • Reasoning         │         │
-│  └──────────────────────┘  └──────────────────────┘         │
-└─────────────────────────────────────────────────────────────┘
-```
+![Nova Voice Coach Architecture](./NovaVoiceCoachDiagram.png)
 
 ---
 
@@ -456,7 +407,9 @@ For questions, issues, or feedback:
 
 ## 🎉 Demo
 
-[Add demo video or screenshots here]
+[![Nova Voice Coach Demo](https://img.youtube.com/vi/EVHek4Fcyno/maxresdefault.jpg)](https://youtu.be/EVHek4Fcyno)
+
+**[▶️ Watch the full demo on YouTube](https://youtu.be/EVHek4Fcyno)**
 
 ---
 
